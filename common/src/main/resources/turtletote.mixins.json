@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "net.digitalpear.turtle_tote.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

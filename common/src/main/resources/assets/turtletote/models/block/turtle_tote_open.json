@@ -1,0 +1,8 @@
+{
+  "parent": "turtletote:block/base_turtle_tote",
+  "textures": {
+    "bottom": "turtletote:block/turtle_tote_bottom",
+    "side": "turtletote:block/turtle_tote_side",
+    "top": "turtletote:block/turtle_tote_top_open"
+  }
+}
