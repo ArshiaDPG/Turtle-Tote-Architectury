@@ -1,6 +1,7 @@
 package net.digitalpear.turtle_tote.forge.common.datagens;
 
 
+import net.digitalpear.turtle_tote.TurtleTote;
 import net.digitalpear.turtle_tote.common.TurtleToteBlock;
 import net.digitalpear.turtle_tote.init.TTBlockEntityType;
 import net.digitalpear.turtle_tote.init.TTBlocks;
@@ -16,8 +17,10 @@ import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
 import net.minecraft.world.level.storage.loot.functions.SetContainerContents;
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class TTBlockLootTableProvider extends BlockLootSubProvider {
     public TTBlockLootTableProvider() {
@@ -27,8 +30,19 @@ public class TTBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         add(TTBlocks.TURTLE_TOTE.get(), this::createToteDrop);
+        add(TTBlocks.NETHERITE_TURTLE_TOTE.get(), this::createToteDrop);
     }
     protected LootTable.Builder createToteDrop(Block arg) {
         return LootTable.lootTable().withPool(this.applyExplosionCondition(arg, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(arg).apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)).apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY).copy("Lock", "BlockEntityTag.Lock").copy("LootTable", "BlockEntityTag.LootTable").copy("LootTableSeed", "BlockEntityTag.LootTableSeed")).apply(SetContainerContents.setContents(TTBlockEntityType.TURTLE_TOTE.get()).withEntry(DynamicLoot.dynamicEntry(TurtleToteBlock.CONTENTS))))));
+    }
+
+    @Override
+    protected Iterable<Block> getKnownBlocks() {
+        return ForgeRegistries.BLOCKS.getValues()
+                .stream()
+                .filter(block -> TurtleTote.MOD_ID
+                        .equals(ForgeRegistries.BLOCKS.getKey(block).getNamespace()))
+                .collect(Collectors.toSet());
+
     }
 }

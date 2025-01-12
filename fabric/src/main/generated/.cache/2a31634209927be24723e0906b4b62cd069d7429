@@ -1,0 +1,4 @@
+// 1.20.1	2025-01-12T11:25:44.8603982	Turtle Tote/Tags for minecraft:block
+2033ca50af948e82852254556ac1a16039173758 data\minecraft\tags\blocks\mineable\pickaxe.json
+2033ca50af948e82852254556ac1a16039173758 data\minecraft\tags\blocks\prevent_mob_spawning_inside.json
+660b46e34d93cbcb8d86dcf01781851051551981 data\minecraft\tags\blocks\needs_diamond_tool.json

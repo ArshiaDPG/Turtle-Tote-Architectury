@@ -26,6 +26,7 @@ public class TTBlockLootTableProvider extends FabricBlockLootTableProvider {
     public void generate() {
 
         add(TTBlocks.TURTLE_TOTE.get(), turtleToteDrops(TTBlocks.TURTLE_TOTE.get()));
+        add(TTBlocks.NETHERITE_TURTLE_TOTE.get(), turtleToteDrops(TTBlocks.NETHERITE_TURTLE_TOTE.get()));
     }
     protected LootTable.Builder turtleToteDrops(Block arg) {
         return LootTable.lootTable().withPool(this.applyExplosionCondition(arg, LootPool.lootPool()

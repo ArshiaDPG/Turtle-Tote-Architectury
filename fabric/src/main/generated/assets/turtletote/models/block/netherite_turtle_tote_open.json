@@ -1,0 +1,8 @@
+{
+  "parent": "turtletote:block/base_turtle_tote",
+  "textures": {
+    "bottom": "turtletote:block/netherite_turtle_tote_bottom",
+    "side": "turtletote:block/netherite_turtle_tote_side",
+    "top": "turtletote:block/netherite_turtle_tote_top_open"
+  }
+}

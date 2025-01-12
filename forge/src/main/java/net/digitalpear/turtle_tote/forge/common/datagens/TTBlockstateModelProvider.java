@@ -14,8 +14,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class TTBlockstateModelProvider extends BlockStateProvider {
 
-    public ModelBuilder<BlockModelBuilder> TOTE_MODEL = sideBottomTop(TTBlocks.TURTLE_TOTE.get());
-    public ModelBuilder<BlockModelBuilder> TOTE_OPEN_MODEL = sideBottomTop(TTBlocks.TURTLE_TOTE.get(), "_open");
+//    public ModelBuilder<BlockModelBuilder> TOTE_MODEL = sideBottomTop(TTBlocks.TURTLE_TOTE.get());
+//    public ModelBuilder<BlockModelBuilder> TOTE_OPEN_MODEL = sideBottomTop(TTBlocks.TURTLE_TOTE.get(), "_open");
 
     public TTBlockstateModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, TurtleTote.MOD_ID, existingFileHelper);
@@ -23,15 +23,19 @@ public class TTBlockstateModelProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-
+        createToteStates(TTBlocks.TURTLE_TOTE.get());
+        createToteStates(TTBlocks.NETHERITE_TURTLE_TOTE.get());
     }
 
     public void createToteStates(Block block){
+        ModelBuilder<BlockModelBuilder> TOTE_MODEL = sideBottomTop(block);
+        ModelBuilder<BlockModelBuilder> TOTE_MODEL_OPEN = sideBottomTop(block, "open");
+
         this.simpleBlockItem(block, TOTE_MODEL);
         this.getVariantBuilder(block).forAllStates(blockState -> {
             ModelBuilder<BlockModelBuilder> model = TOTE_MODEL;
             if (blockState.getValue(TurtleToteBlock.OPEN)){
-                model = TOTE_OPEN_MODEL;
+                model = TOTE_MODEL_OPEN;
             }
             ConfiguredModel.Builder<?> builder = ConfiguredModel.builder()
                     .rotationX(getRotationFromDirection(blockState.getValue(TurtleToteBlock.FACING)))
@@ -39,7 +43,6 @@ public class TTBlockstateModelProvider extends BlockStateProvider {
                     .modelFile(model);
             return builder.build();
         });
-
     }
     private int getRotationFromDirection(Direction direction){
         switch (direction){
@@ -58,18 +61,13 @@ public class TTBlockstateModelProvider extends BlockStateProvider {
         }
     }
     private ModelBuilder<BlockModelBuilder> sideBottomTop(Block block) {
-        ResourceLocation name = BuiltInRegistries.BLOCK.getKey(block);
-        return models().withExistingParent(name.getPath(), name.withPrefix("base_"))
-                .texture("side", name.withSuffix("_side"))
-                .texture("bottom", name.withSuffix("_bottom"))
-                .texture("top", name.withSuffix("_top"));
+        return sideBottomTop(block, "");
     }
     private ModelBuilder<BlockModelBuilder> sideBottomTop(Block block, String suffix) {
         ResourceLocation name = BuiltInRegistries.BLOCK.getKey(block);
-        return models().withExistingParent(name.getPath(), name.withPrefix("base_"))
+        return models().withExistingParent(name.getPath(), modLoc(ModelProvider.BLOCK_FOLDER + "/base_turtle_tote"))
                 .texture("side", name.withSuffix("_side"))
                 .texture("bottom", name.withSuffix("_bottom"))
                 .texture("top", name.withSuffix("_top" + suffix));
     }
-
 }

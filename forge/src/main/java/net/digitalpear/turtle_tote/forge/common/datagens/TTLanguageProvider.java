@@ -14,6 +14,7 @@ public class TTLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add(TTBlocks.TURTLE_TOTE.get(), "Turtle Tote");
+        add(TTBlocks.NETHERITE_TURTLE_TOTE.get(), "Netherite Turtle Tote");
         add(TurtleToteBlockEntity.TURTLE_TOTE_CONTAINER_NAME, "Turtle Tote");
     }
 }

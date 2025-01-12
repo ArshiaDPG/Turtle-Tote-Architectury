@@ -24,7 +24,7 @@ public final class TurtleToteForge {
         // Submit our event bus to let Architectury API register our content on the right time.
         EventBuses.registerModEventBus(TurtleTote.MOD_ID, bus);
         bus.addListener(this::buildContents);
-        bus.addListener(TTDataGenerators::gatherData);
+//        bus.addListener(TTDataGenerators::gatherData);
 //        bus.addListener(this::createLootTables);
 
         // Run our common setup.

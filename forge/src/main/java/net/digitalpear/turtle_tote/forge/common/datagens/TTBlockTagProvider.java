@@ -18,6 +18,8 @@ public class TTBlockTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider arg) {
-        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(TTBlocks.TURTLE_TOTE.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(TTBlocks.TURTLE_TOTE.get(), TTBlocks.NETHERITE_TURTLE_TOTE.get());
+        this.tag(BlockTags.INVALID_SPAWN_INSIDE).add(TTBlocks.TURTLE_TOTE.get(), TTBlocks.NETHERITE_TURTLE_TOTE.get());
+        this.tag(BlockTags.NEEDS_DIAMOND_TOOL).add(TTBlocks.NETHERITE_TURTLE_TOTE.get());
     }
 }

@@ -13,6 +13,7 @@ public class TTLanguageProvider extends FabricLanguageProvider {
     @Override
     public void generateTranslations(TranslationBuilder translationBuilder) {
         translationBuilder.add(TTBlocks.TURTLE_TOTE.get(), "Turtle Tote");
+        translationBuilder.add(TTBlocks.NETHERITE_TURTLE_TOTE.get(), "Netherite Turtle Tote");
         translationBuilder.add(TurtleToteBlockEntity.TURTLE_TOTE_CONTAINER_NAME, "Turtle Tote");
     }
 }

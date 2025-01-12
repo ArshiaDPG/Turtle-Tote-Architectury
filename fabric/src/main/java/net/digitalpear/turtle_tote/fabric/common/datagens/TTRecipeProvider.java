@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
 import net.minecraft.world.item.Items;
 
 import java.util.function.Consumer;
@@ -27,5 +28,7 @@ public class TTRecipeProvider extends FabricRecipeProvider {
                 .unlockedBy(getHasName(Items.SCUTE), has(Items.SCUTE))
                 .unlockedBy(getHasName(Items.TURTLE_HELMET), has(Items.TURTLE_HELMET))
                 .save(consumer);
+
+        netheriteSmithing(consumer, TTBlocks.TURTLE_TOTE.get().asItem(), RecipeCategory.DECORATIONS, TTBlocks.NETHERITE_TURTLE_TOTE.get().asItem());
     }
 }

@@ -2,9 +2,24 @@ plugins {
     id 'com.github.johnrengelman.shadow'
 }
 
+def generatedResources = file("src/generated")
+
+sourceSets {
+    main {
+        resources.srcDir generatedResources
+    }
+}
+
 loom {
     forge {
         mixinConfig "turtletote.mixins.json"
+    }
+    runs {
+        data {
+            data()
+            programArgs "--all", "--mod", "turtletote"
+            programArgs "--output", generatedResources.absolutePath
+        }
     }
 }
 

@@ -32,6 +32,7 @@ public class TTModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockModelGenerators) {
         registerTurtleTote(blockModelGenerators, TTBlocks.TURTLE_TOTE.get());
+        registerTurtleTote(blockModelGenerators, TTBlocks.NETHERITE_TURTLE_TOTE.get());
     }
 
     @Override

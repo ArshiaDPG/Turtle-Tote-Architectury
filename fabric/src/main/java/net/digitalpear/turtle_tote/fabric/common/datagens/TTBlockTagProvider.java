@@ -19,7 +19,8 @@ public class TTBlockTagProvider extends FabricTagProvider<Block> {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(TTBlocks.TURTLE_TOTE.get());
-        getOrCreateTagBuilder(BlockTags.PREVENT_MOB_SPAWNING_INSIDE).add(TTBlocks.TURTLE_TOTE.get());
+        getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(TTBlocks.TURTLE_TOTE.get(), TTBlocks.NETHERITE_TURTLE_TOTE.get());
+        getOrCreateTagBuilder(BlockTags.PREVENT_MOB_SPAWNING_INSIDE).add(TTBlocks.TURTLE_TOTE.get(), TTBlocks.NETHERITE_TURTLE_TOTE.get());
+        getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(TTBlocks.NETHERITE_TURTLE_TOTE.get());
     }
 }

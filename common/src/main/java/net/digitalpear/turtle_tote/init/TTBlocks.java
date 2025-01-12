@@ -4,6 +4,7 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.digitalpear.turtle_tote.TurtleTote;
 import net.digitalpear.turtle_tote.common.TurtleToteBlock;
+import net.digitalpear.turtle_tote.common.TurtleToteBlockItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -22,11 +23,21 @@ public class TTBlocks {
     public static final RegistrySupplier<Block> TURTLE_TOTE = registerBlock("turtle_tote", () ->
             new TurtleToteBlock(BlockBehaviour.Properties.copy(Blocks.TUFF)
                     .explosionResistance(10).noOcclusion().forceSolidOn().pushReaction(PushReaction.DESTROY)
-                    .mapColor(MapColor.EMERALD).isSuffocating((blockState, blockGetter, blockPos) -> false)));
+                    .mapColor(MapColor.EMERALD).isSuffocating((blockState, blockGetter, blockPos) -> false))
+    );
 
+    public static final RegistrySupplier<Block> NETHERITE_TURTLE_TOTE = registerBlock("netherite_turtle_tote", () ->
+            new TurtleToteBlock(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK)
+                    .explosionResistance(10).noOcclusion().forceSolidOn().pushReaction(PushReaction.DESTROY)
+                    .isSuffocating((blockState, blockGetter, blockPos) -> false)),
+            new Item.Properties().stacksTo(1).fireResistant()
+    );
     public static <T extends Block> RegistrySupplier<T> registerBlock(String name, Supplier<T> block) {
+        return registerBlock(name, block, new Item.Properties().stacksTo(1));
+    }
+    public static <T extends Block> RegistrySupplier<T> registerBlock(String name, Supplier<T> block, Item.Properties properties) {
         RegistrySupplier<T> toReturn = BLOCKS.register(name, block);
-        TTItems.ITEMS.register(name, () -> new BlockItem(toReturn.get(), new Item.Properties().stacksTo(1)));
+        TTItems.ITEMS.register(name, () -> new TurtleToteBlockItem(toReturn.get(), properties));
         return toReturn;
     }
 

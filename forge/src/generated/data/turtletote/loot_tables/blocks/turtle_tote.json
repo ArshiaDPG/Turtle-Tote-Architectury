@@ -1,0 +1,58 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_name",
+              "source": "block_entity"
+            },
+            {
+              "function": "minecraft:copy_nbt",
+              "ops": [
+                {
+                  "op": "replace",
+                  "source": "Lock",
+                  "target": "BlockEntityTag.Lock"
+                },
+                {
+                  "op": "replace",
+                  "source": "LootTable",
+                  "target": "BlockEntityTag.LootTable"
+                },
+                {
+                  "op": "replace",
+                  "source": "LootTableSeed",
+                  "target": "BlockEntityTag.LootTableSeed"
+                }
+              ],
+              "source": "block_entity"
+            },
+            {
+              "type": "turtletote:turtle_tote",
+              "entries": [
+                {
+                  "type": "minecraft:dynamic",
+                  "name": "turtletote:turtle_tote"
+                }
+              ],
+              "function": "minecraft:set_contents"
+            }
+          ],
+          "name": "turtletote:turtle_tote"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "turtletote:blocks/turtle_tote"
+}

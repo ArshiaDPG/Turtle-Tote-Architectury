@@ -24,21 +24,7 @@ public class TTDataGenerators {
         ExistingFileHelper efh = event.getExistingFileHelper();
         PackOutput output = gen.getPackOutput();
 
-        event.getGenerator().addProvider(
-                // Tell generator to run only when server data are generating
-                event.includeServer(),
-                new TTLootTableProviders(
-                        output,
-                        // Specify registry names of tables that are required to generate, or can leave empty
-                        Collections.emptySet(),
-                        // Sub providers which generate the loot
-                        List.of(new LootTableProvider.SubProviderEntry(
-                                TTBlockLootTableProvider::new,
-                                // Loot table generator for the 'empty' param set
-                                LootContextParamSets.BLOCK
-                        ))
-                )
-        );
+        gen.addProvider(event.includeServer(), TTLootTableProviders.create(output));
         gen.addProvider(
                 event.includeClient(),
                 new TTBlockstateModelProvider(output, efh)
@@ -49,7 +35,7 @@ public class TTDataGenerators {
                 // Localizations for American English
                 new TTLanguageProvider(output, "en_us")
         );
-        gen.addProvider(
+        TTBlockTagProvider blockTagProvider =gen.addProvider(
                 // Tell generator to run only when server data are generating
                 event.includeServer(),
                 // Extends net.minecraftforge.common.data.BlockTagsProvider
@@ -57,6 +43,16 @@ public class TTDataGenerators {
                         output,
                         event.getLookupProvider(),
                         event.getExistingFileHelper()
+                )
+        );
+        gen.addProvider(
+                // Tell generator to run only when server data are generating
+                event.includeServer(),
+                // Extends net.minecraftforge.common.data.BlockTagsProvider
+                new TTItemTagProvider(
+                        output,
+                        event.getLookupProvider(),
+                        blockTagProvider.contentsGetter()
                 )
         );
     }
