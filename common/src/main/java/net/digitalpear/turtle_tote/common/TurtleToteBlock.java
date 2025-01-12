@@ -47,9 +47,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class TurtleToteBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -154,7 +154,7 @@ public class TurtleToteBlock extends BaseEntityBlock implements SimpleWaterlogge
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         Level level = blockPlaceContext.getLevel();
         BlockPos pos = blockPlaceContext.getClickedPos();
-        return super.getStateForPlacement(blockPlaceContext).setValue(WATERLOGGED, level.isWaterAt(pos)).setValue(FACING, blockPlaceContext.getClickedFace().getOpposite());
+        return Objects.requireNonNull(super.getStateForPlacement(blockPlaceContext)).setValue(WATERLOGGED, level.isWaterAt(pos)).setValue(FACING, blockPlaceContext.getClickedFace().getOpposite());
     }
     public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
         BlockEntity blockEntity = level.getBlockEntity(blockPos);

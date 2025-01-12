@@ -1,7 +1,6 @@
 package net.digitalpear.turtle_tote;
 
 import dev.architectury.event.events.common.LootEvent;
-import dev.architectury.event.events.common.PlayerEvent;
 import net.digitalpear.turtle_tote.init.TTBlockEntityType;
 import net.digitalpear.turtle_tote.init.TTBlocks;
 import net.digitalpear.turtle_tote.init.TTItems;
@@ -12,13 +11,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntry;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.EnchantWithLevelsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetContainerLootTable;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemDamageFunction;
-import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
@@ -62,7 +59,6 @@ public final class TurtleTote {
                     lootTableModificationContext.addPool(LootPool.lootPool().add(entry).when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.02f, 2f)).build());
                 }
             }
-
         });
     }
 }
