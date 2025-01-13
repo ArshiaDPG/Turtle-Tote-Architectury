@@ -18,7 +18,7 @@ public final class TurtleToteFabric implements ModInitializer {
         TurtleTote.init();
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(fabricItemGroupEntries -> {
-            fabricItemGroupEntries.addBefore(Items.SHULKER_BOX, TTBlocks.TURTLE_TOTE.get());
+            fabricItemGroupEntries.addBefore(Items.SHULKER_BOX, TTBlocks.TURTLE_TOTE.get(), TTBlocks.NETHERITE_TURTLE_TOTE.get());
         });
 
 

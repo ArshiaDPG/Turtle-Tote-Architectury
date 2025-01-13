@@ -38,6 +38,7 @@ public final class TurtleToteForge {
         // Add to ingredients tab
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             addBefore(Items.SHULKER_BOX, TTBlocks.TURTLE_TOTE, event);
+            addBefore(Items.SHULKER_BOX, TTBlocks.NETHERITE_TURTLE_TOTE, event);
         }
     }
 

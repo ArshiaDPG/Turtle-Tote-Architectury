@@ -7,15 +7,27 @@ import net.digitalpear.turtle_tote.init.TTBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.model.ModelTemplate;
+import net.minecraft.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.*;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
+import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.Optional;
 
 public class TTBlockstateModelProvider extends BlockStateProvider {
 
 //    public ModelBuilder<BlockModelBuilder> TOTE_MODEL = sideBottomTop(TTBlocks.TURTLE_TOTE.get());
 //    public ModelBuilder<BlockModelBuilder> TOTE_OPEN_MODEL = sideBottomTop(TTBlocks.TURTLE_TOTE.get(), "_open");
+public static final ModelTemplate TURTLE_TOTE = block("base_turtle_tote", TextureSlot.TOP, TextureSlot.BOTTOM, TextureSlot.SIDE);
+
+    private static ModelTemplate block(String parent, TextureSlot... requiredTextureKeys) {
+        return new ModelTemplate(Optional.of(TurtleTote.id("block/" + parent)), Optional.empty(), requiredTextureKeys);
+    }
 
     public TTBlockstateModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, TurtleTote.MOD_ID, existingFileHelper);
@@ -65,7 +77,8 @@ public class TTBlockstateModelProvider extends BlockStateProvider {
     }
     private ModelBuilder<BlockModelBuilder> sideBottomTop(Block block, String suffix) {
         ResourceLocation name = BuiltInRegistries.BLOCK.getKey(block);
-        return models().withExistingParent(name.getPath(), modLoc(ModelProvider.BLOCK_FOLDER + "/base_turtle_tote"))
+
+        return models().withExistingParent(name.getPath() + suffix, modLoc("base_turtle_tote"))
                 .texture("side", name.withSuffix("_side"))
                 .texture("bottom", name.withSuffix("_bottom"))
                 .texture("top", name.withSuffix("_top" + suffix));
